@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Direcciones</title>
+    <meta charset="UTF-8" />
+    <!-- Bootstrap 5 CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="container mt-5">
+    <div class="mb-4 d-flex justify-content-between align-items-center">
+      <h2>Direcciones de la Persona</h2>
+      <div>
+        <a th:href="@{/personas}" class="btn btn-secondary me-2"
+          >Volver a personas</a
+        >
+        <a
+          th:href="@{/personas/{personaId}/direcciones/nueva(personaId=${personaId})}"
+          class="btn btn-primary"
+        >
+          Agregar Dirección
+        </a>
+      </div>
+    </div>
+
+    <table class="table table-bordered table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Dirección</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="direccion : ${direcciones}">
+          <td th:text="${direccion.id}">1</td>
+          <td th:text="${direccion.direccion}">Calle 13</td>
+          <td>
+            <a
+              class="btn btn-sm btn-warning me-1"
+              th:href="@{/personas/{personaId}/direcciones/editar/{id}(personaId=${personaId}, id=${direccion.id})}"
+            >
+              Editar
+            </a>
+            <a
+              class="btn btn-sm btn-danger"
+              th:href="@{/personas/{personaId}/direcciones/eliminar/{id}(personaId=${personaId}, id=${direccion.id})}"
+              onclick="return confirm('¿Está seguro que desea eliminar esta dirección?');"
+            >
+              Eliminar
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Bootstrap JS (opcional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Nueva Dirección</title>
+    <meta charset="UTF-8" />
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="container mt-5">
+    <div class="card shadow-sm mx-auto" style="max-width: 500px">
+      <div class="card-body">
+        <h2 class="card-title mb-4 text-center">Registrar Dirección</h2>
+
+        <form
+          th:action="@{/personas/{personaId}/direcciones/guardar(personaId=${personaId})}"
+          th:object="${direccion}"
+          method="post"
+        >
+          <div class="mb-3">
+            <label for="direccion" class="form-label">Dirección</label>
+            <input
+              type="text"
+              th:field="*{direccion}"
+              id="direccion"
+              class="form-control"
+              required
+            />
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <a
+              th:href="@{/personas/{personaId}/direcciones(personaId=${personaId})}"
+              class="btn btn-secondary"
+              >Cancelar</a
+            >
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS (opcional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
